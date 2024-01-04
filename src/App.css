@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  margin: 150px;
+  border: black;
+  gap: 10px;
+}
+
+.form {
+  gap: 10px;
 }
 
 .App-logo {
