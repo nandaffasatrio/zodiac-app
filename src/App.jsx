@@ -89,7 +89,7 @@ function App() {
         Tanggal Lahir: <input type="date" value={tglLahir} onChange={(e) => setTglLahir(e.target.value)} required />
         <br />
         <button type="button" onClick={validateForm}>
-          Validate
+          Submit
         </button>
       </form>
 
