@@ -1,23 +1,15 @@
+// Import React, useState, dan CSS
 import React, { useState } from "react";
 import "./App.css";
 
+// Komponen utama App
 function App() {
+  // State untuk menyimpan data input dan hasil
   const [nama, setNama] = useState("");
   const [tglLahir, setTglLahir] = useState("");
   const [hasil, setHasil] = useState(null);
 
-  const submitForm = () => {
-    const usia = hitungUsia(tglLahir);
-
-    const zodiac = getZodiacName(tglLahir);
-
-    setHasil({
-      nama,
-      usia,
-      zodiac,
-    });
-  };
-
+  // Fungsi untuk menghitung usia berdasarkan tanggal lahir
   const hitungUsia = (tglLahir) => {
     const tglLahirObj = new Date(tglLahir);
     const today = new Date();
@@ -32,6 +24,7 @@ function App() {
     };
   };
 
+  // Fungsi untuk mendapatkan zodiak berdasarkan tanggal lahir
   const getZodiacName = (tglLahir) => {
     const tZodiac = [
       { startDate: "12-22", endDate: "01-20", name: "Capricorn" },
@@ -62,9 +55,31 @@ function App() {
       }
     }
 
-    return "Zodiac anda Capricorn";
+    return "Bintang anda adalah Capricorn";
   };
 
+  // Fungsi untuk menangani validasi formulir
+  const validateForm = () => {
+    if (!nama || !tglLahir) {
+      alert("Nama dan Tanggal Lahir harus diisi.");
+      return;
+    }
+
+    // Memanggil fungsi untuk menghitung usia
+    const usia = hitungUsia(tglLahir);
+
+    // Memanggil fungsi untuk mendapatkan Zodiac Name
+    const zodiac = getZodiacName(tglLahir);
+
+    // Menyimpan hasil di state
+    setHasil({
+      nama,
+      usia,
+      zodiac,
+    });
+  };
+
+  // Render komponen
   return (
     <div className="App">
       <h2>Form Astrologi</h2>
@@ -73,8 +88,8 @@ function App() {
         <br />
         Tanggal Lahir: <input type="date" value={tglLahir} onChange={(e) => setTglLahir(e.target.value)} required />
         <br />
-        <button type="button" onClick={submitForm}>
-          Submit
+        <button type="button" onClick={validateForm}>
+          Validate
         </button>
       </form>
 
@@ -91,4 +106,5 @@ function App() {
   );
 }
 
+// Ekspor komponen App
 export default App;
